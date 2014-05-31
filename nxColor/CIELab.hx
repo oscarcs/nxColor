@@ -111,6 +111,15 @@ class CIELab
 	{
 		return this.toXYZ().toRGB();
 	}
+	
+	/**
+	 * Convert this color to the HSV color space.
+	 * @return	New HSV color.
+	 */
+	public function toHSV():HSV
+	{
+		return this.toRGB().toHSV();
+	}
 
 	/**
 	 * Function which blends between two colors, including original and target.

@@ -66,6 +66,15 @@ class CIELch
 	}
 	
 	/**
+	 * Convert this color to the HSV color space.
+	 * @return	New HSV color.
+	 */
+	public function toHSV():HSV
+	{
+		return this.toRGB().toHSV();
+	}
+	
+	/**
 	 * Function which blends between two colors, including original and target.
 	 * @param	n	Total number of steps.
 	 * @param	target	Color to blend towards.

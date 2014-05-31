@@ -34,7 +34,7 @@ class RGB
 	
 	/**
 	 * Convert this color to the XYZ color space.
-	 * @return New XYZ color.
+	 * @return	New XYZ color.
 	 */
 	public function toXYZ():XYZ
 	{
@@ -85,7 +85,7 @@ class RGB
 	
 	/**
 	 * Convert this color to the CIELab color space.
-	 * @return New CIELab color.
+	 * @return	New CIELab color.
 	 */
 	public function toCIELab():CIELab
 	{
@@ -94,11 +94,64 @@ class RGB
 	
 	/**
 	 * Convert this color to the CIELch color space.
-	 * @return New CIELch color.
+	 * @return	New CIELch color.
 	 */
 	public function toCIELch():CIELch
 	{
 		return this.toXYZ().toCIELab().toCIELch();
+	}
+	
+	/**
+	 * Convert this color to the HSV color space.
+	 * @return	New HSV color.
+	 */
+	public function toHSV():HSV
+	{
+		var r:Float, g:Float, b:Float;
+		r = this.R/255;
+		g = this.G/255;
+		b = this.B/255;
+
+		var h:Float, s:Float, v:Float;
+		var min:Float, max:Float, delta:Float;
+
+		min = trebleMin( r, g, b );
+		max = trebleMax( r, g, b );
+
+		v = max;
+		delta = max - min;
+		if (max != 0)
+		{
+			s = delta / max;
+		}
+		else
+		{
+			s = 0;
+			h = -1;
+			return new HSV(h, s, v);
+		}
+		
+		if (r == max)
+		{
+			h = (g - b) / delta;
+		}
+		else if (g == max)
+		{
+			h = 2 + (b - r) / delta;
+		}
+		else
+		{
+			h = 4 + (r - g) / delta;
+		}
+		
+		h *= 60;
+		
+		if (h < 0)
+		{
+			h += 360;
+		}
+
+		return new HSV(h, s*100, v*100);
 	}
 	
 	/**
@@ -133,6 +186,24 @@ class RGB
 	{
 		var x:String = StringTools.hex(Std.int(this.R), 2) + StringTools.hex(Std.int(this.G), 2) + StringTools.hex(Std.int(this.B), 2);
 		return Std.parseInt("0xff" + x);
+	}
+	
+	private function trebleMax(a:Float, b:Float, c:Float)
+	{
+		var tmp;
+		if (b < a) { tmp = b; }
+		else { tmp = a; }
+		if (c < tmp) { return c; }
+		else { return tmp; }
+	}
+	
+	private function trebleMin(a:Float, b:Float, c:Float)
+	{
+		var tmp;
+		if (b > a) { tmp = b; }
+		else { tmp = a; }
+		if (c > tmp) { return c; }
+		else { return tmp; }
 	}
 	
 }
