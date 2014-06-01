@@ -136,11 +136,56 @@ class HSV
 		return this.toRGB().toNumber();
 	}
 	
-	public function saturate(amount:Float):HSV
+	/**
+	 * Helper function for setting hue. Useful for chaining.
+	 * @param	x	Amount of hue.
+	 * @return	New HSV color.
+	 */
+	public function setHue(x:Float):HSV
 	{
-		var x = this.S + amount;
+		Util.loop(x, 360);
+		return new HSV(x, this.S, this.V);
+	}
+	
+	/**
+	 * Helper function for setting saturation. Useful for chaining.
+	 * @param	x	Amount of saturation.
+	 * @return	New HSV color.
+	 */
+	public function setSaturation(x:Float):HSV
+	{
 		if (x > 100) { x = 100; }
 		return new HSV(this.H, x, this.V);
 	}
 	
+	/**
+	 * Helper function for setting value. Useful for chaining.
+	 * @param	x	Amount of value.
+	 * @return	New HSV color.
+	 */
+	public function setValue(x:Float):HSV
+	{
+		if (x > 100) { x = 100; }
+		return new HSV(this.H, this.S, x);
+	}
+	
+	/**
+	 * Helper function for getting the hue difference between two HSV colors. Useful for chaining.
+	 * @param	x	Color to compare against.
+	 * @return	Absolute difference between two hue values.
+	 */
+	public function getHueDiff(x:HSV):Float
+	{
+		return Math.abs(this.H - x.H);
+	}
+	
+	/**
+	 * Helper function for getting the value difference between two HSV colors. Useful for chaining.
+	 * @param	x	Color to compare against.
+	 * @return	Absolute difference between two value values.
+	 */
+	public function getValueDiff(x:HSV):Float
+	{
+		return Math.abs(this.V - x.V);
+	}
 }
