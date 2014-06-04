@@ -1,7 +1,7 @@
 nxColor
 =======
 
-Color manipulation library written in Haxe, currently very WIP. Feel free to contribute.
+Color manipulation library written in Haxe, currently very WIP. Feel free to contribute or [hit me up on Twitter](www.twitter.com/ocsims) for feature requests, ideas, etc.
 
 Currently supports CIELch, CIELab, XYZ, RGB, and HSB color spaces, and will convert between them.
 The focus of this library is palette creation for game development.
