@@ -9,6 +9,11 @@ import nxColor.*;
 typedef CanBlend =
 {
 	function blend(n:Int, target:Dynamic):Dynamic;
+	function toHSV():HSV;
+	function toRGB():RGB;
+	function toXYZ():XYZ;
+	function toCIELch():CIELch;
+	function toCIELab():CIELab;
 }
  
 class Util
@@ -30,7 +35,6 @@ class Util
 
 	if (x >= length)
 		x %= length;
-
 	return x;
 	}
 	
@@ -49,7 +53,7 @@ class Util
 	/**
 	 * Blend between an arbitrary number of colors in an array.
 	 * @param	x	Array of colors to blend between.
-	 * @param	length	Number of colors to have in the final array (currently inaccurate!)
+	 * @param	length	Number of colors to have in the final array (not perfectly accurate)
 	 * @return	new array containing final blend.
 	 */
 	public static function blendMultiple<T:(CanBlend)>(x:Array<T>, length:Int):Array<T>
@@ -78,15 +82,15 @@ class Util
 		var a:Array<CIELab> = new Array<CIELab>();
 		
 		var x:CIELab = new CIELab(0, 0, 0);
-		x = x.toHSV().setHue(180 + Std.random(210)).setSaturation(Std.random(25) + 60).setValue(90 + Std.random(10)).toCIELab();
+		x = x.toHSV().setHue(180 + randomFloat(210, 5)).setSaturation(randomFloat(25, 5) + 60).setValue(90 + randomFloat(10, 5)).toCIELab();
 		
 		var y:CIELab = new CIELab(0, 0, 0);
-		y = y.toHSV().setHue(180 + Std.random(210)).setSaturation(Std.random(25) + 60).setValue(90 + Std.random(10)).toCIELab();
+		y = y.toHSV().setHue(180 + randomFloat(210,5)).setSaturation(randomFloat(25, 5) + 60).setValue(90 + randomFloat(10, 5)).toCIELab();
 		
 		//juggle the colors a little; probably unnecessary, but w/e. 
 		while (y.toHSV().getHueDiff(x.toHSV()) > 100 && y.toHSV().getValueDiff(x.toHSV()) > 5)
 		{
-			y = y.toHSV().setHue(180 + Std.random(210)).setSaturation(Std.random(25) + 60).setValue(90 + Std.random(10)).toCIELab();
+			y = y.toHSV().setHue(180 + randomFloat(210, 5)).setSaturation(randomFloat(25,5) + 60).setValue(90 + randomFloat(10, 5)).toCIELab();
 		}
 		
 		if (x.toHSV().V < y.toHSV().V)
@@ -96,6 +100,20 @@ class Util
 		}
 
 		a = x.blend(n, y);
+		return a;
+	}
+		
+	/**
+	 * Function that returns a random Float to a certain number of decimal places.
+	 * @param	x	Integer maximum, not inclusive.
+	 * @param	decimalPlaces	Number of decimal places to return.
+	 * @return	New random Float.
+	 */
+	private static function randomFloat(x:Int, decimalPlaces:Int):Float
+	{
+		var z:Int = Std.int(Math.pow(10, decimalPlaces));
+		var y = Std.random(x * z);
+		var a = y / z;
 		return a;
 	}
 	

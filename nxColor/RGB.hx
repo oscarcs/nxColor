@@ -33,6 +33,15 @@ class RGB
 	}
 	
 	/**
+	 * Return this RGB color.
+	 * @return	This RGB color.
+	 */
+	public function toRGB():RGB
+	{
+		return this;
+	}
+	
+	/**
 	 * Convert this color to the XYZ color space.
 	 * @return	New XYZ color.
 	 */
@@ -108,15 +117,15 @@ class RGB
 	public function toHSV():HSV
 	{
 		var r:Float, g:Float, b:Float;
-		r = this.R/255;
-		g = this.G/255;
-		b = this.B/255;
+		r = this.R / 255;
+		g = this.G / 255;
+		b = this.B / 255;
 
 		var h:Float, s:Float, v:Float;
 		var min:Float, max:Float, delta:Float;
 
-		min = trebleMin( r, g, b );
-		max = trebleMax( r, g, b );
+		min = Math.min(r, Math.min(g, b));
+		max = Math.max(r, Math.max(g, b));
 
 		v = max;
 		delta = max - min;
@@ -155,6 +164,17 @@ class RGB
 	}
 	
 	/**
+	 * Convert this color to a hex int.
+	 * Useful for libraries like HaxeFlixel.
+	 * @return	Int in the form 0xAARRGGBB.
+	 */
+	public function toNumber():Int
+	{
+		var x:String = StringTools.hex(Std.int(this.R), 2) + StringTools.hex(Std.int(this.G), 2) + StringTools.hex(Std.int(this.B), 2);
+		return Std.parseInt("0xff" + x);
+	}
+	
+	/**
 	 * Function which blends between two colors, including original and target.
 	 * @param	n	Total number of steps.
 	 * @param	target	Color to blend towards.
@@ -177,33 +197,8 @@ class RGB
 		return a;
 	}
 	
-	/**
-	 * Convert this color to a hex int.
-	 * Useful for libraries like HaxeFlixel.
-	 * @return	Int in the form 0xAARRGGBB.
-	 */
-	public function toNumber():Int
-	{
-		var x:String = StringTools.hex(Std.int(this.R), 2) + StringTools.hex(Std.int(this.G), 2) + StringTools.hex(Std.int(this.B), 2);
-		return Std.parseInt("0xff" + x);
-	}
-	
-	private function trebleMax(a:Float, b:Float, c:Float)
-	{
-		var tmp;
-		if (b < a) { tmp = b; }
-		else { tmp = a; }
-		if (c < tmp) { return c; }
-		else { return tmp; }
-	}
-	
-	private function trebleMin(a:Float, b:Float, c:Float)
-	{
-		var tmp;
-		if (b > a) { tmp = b; }
-		else { tmp = a; }
-		if (c > tmp) { return c; }
-		else { return tmp; }
-	}
-	
+	//public function makeComplementary():Array<RGB>
+	//{
+		//this.toHSV()
+	//}	
 }

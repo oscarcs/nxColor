@@ -33,6 +33,15 @@ class CIELab
 	}
 	
 	/**
+	 * Return this CIELab color.
+	 * @return	This CIELab color.
+	 */
+	public function toCIELab():CIELab
+	{
+		return this;
+	}
+	
+	/**
 	 * Convert this color to the CIELch color space.
 	 * @return New CIELch color.
 	 */

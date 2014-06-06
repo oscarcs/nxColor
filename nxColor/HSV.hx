@@ -35,6 +35,15 @@ class HSV
 	}
 	
 	/**
+	 * Return this HSV color.
+	 * @return	This HSV color.
+	 */
+	public function toHSV():HSV
+	{
+		return this;
+	}
+	
+	/**
 	 * Convert this color to the RGB color space.
 	 * @return	New RGB color.
 	 */
@@ -104,6 +113,16 @@ class HSV
 	}
 	
 	/**
+	 * Convert this color to a hex int.
+	 * Useful for libraries like HaxeFlixel.
+	 * @return	Int in the form 0xAARRGGBB.
+	 */
+	public function toNumber():Int
+	{
+		return this.toRGB().toNumber();
+	}
+	
+	/**
 	 * Function which blends between two colors, including original and target.
 	 * @param	n	Total number of steps.
 	 * @param	target	Color to blend towards.
@@ -125,15 +144,13 @@ class HSV
 		
 		return a;
 	}
-	
-	/**
-	 * Convert this color to a hex int.
-	 * Useful for libraries like HaxeFlixel.
-	 * @return	Int in the form 0xAARRGGBB.
-	 */
-	public function toNumber():Int
+
+	public function makeComplementary():Array<HSV>
 	{
-		return this.toRGB().toNumber();
+		var x = this.toHSV();
+		var y = new HSV(Util.loop(x.H + 180, 360), x.S, x.V);
+		var z = new Array<HSV>();
+		return z;
 	}
 	
 	/**

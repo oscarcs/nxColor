@@ -1,7 +1,7 @@
 package nxColor;
 
 /**
- * Class for representing XYZ color and associated useful functions.
+ * Class for representing CIE XYZ color and associated useful functions.
  * @author NxT
  */
 class XYZ
@@ -20,6 +20,15 @@ class XYZ
 		this.X = X;
 		this.Y = Y;
 		this.Z = Z;
+	}
+	
+	/**
+	 * Return this XYZ color.
+	 * @return	This XYZ color.
+	 */
+	public function toXYZ():XYZ
+	{
+		return this;
 	}
 	
 	/**
