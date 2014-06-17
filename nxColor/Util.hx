@@ -6,7 +6,7 @@ import nxColor.*;
  * Utility class for miscellaneous color manipulation.
  * @author NxT
  */
-typedef CanBlend =
+typedef IsColor =
 {
 	function blend(n:Int, target:Dynamic):Dynamic;
 	function toHSV():HSV;
@@ -21,6 +21,20 @@ class Util
 	public function new()
 	{
 		
+	}
+	
+	/**
+	 * Gets the complementary / inverse color. 
+	 * @param	color
+	 * @return	Complementary color.
+	 */
+	public static function makeComplementary(color:IsColor)
+	{
+		var rgb:RGB = color.toRGB();
+		rgb.R = 255 - rgb.R;
+		rgb.G = 255 - rgb.G;
+		rgb.B = 255 - rgb.B;
+		return rgb;
 	}
 	
 	/**
@@ -56,7 +70,7 @@ class Util
 	 * @param	length	Number of colors to have in the final array (not perfectly accurate)
 	 * @return	new array containing final blend.
 	 */
-	public static function blendMultiple<T:(CanBlend)>(x:Array<T>, length:Int):Array<T>
+	public static function blendMultiple<T:(IsColor)>(x:Array<T>, length:Int):Array<T>
 	{
 		var a:Array<T> = new Array<T>();
 		var b:Array<T> = new Array<T>();
@@ -115,6 +129,45 @@ class Util
 		var y = Std.random(x * z);
 		var a = y / z;
 		return a;
+	}
+	
+	/**
+	 * Helper function to make color x the same type as color y.
+	 * @param	x	Color to modify and return.
+	 * @param	y	Reference color.
+	 * @return	x converted to type of y.
+	 */
+	public static function makeType(x:IsColor, y:IsColor):Dynamic
+	{
+		if (Std.is(y, CIELab))
+		{
+			return x.toCIELab();
+		}
+		
+		else if (Std.is(y, CIELch))
+		{
+			return x.toCIELch();
+		}
+		
+		else if (Std.is(y, HSV))
+		{
+			return x.toHSV();
+		}
+		
+		else if (Std.is(y, RGB))
+		{
+			return x.toRGB();
+		}
+
+		else if (Std.is(y, XYZ))
+		{
+			return x.toXYZ();
+		}
+		
+		else
+		{
+			return null;
+		}
 	}
 	
 }

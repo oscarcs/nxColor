@@ -188,8 +188,17 @@ class XYZ
 	 * Useful for libraries like HaxeFlixel.
 	 * @return	Int in the form 0xAARRGGBB.
 	 */
-	public function toNumber():Int
+	public function toNumber()
 	{
 		return this.toRGB().toNumber();
+	}
+
+	/**
+	 * Convert this color to hexadecimal representation.
+	 * @return	Hex in the form RRGGBB.
+	 */
+	public function toHex()
+	{
+		return this.toRGB().toHex();
 	}
 }

@@ -11,15 +11,15 @@ class CIELch
 	/**
 	 * Lightness: 0-100
 	 */
-	private var L:Float;
+	public var L:Float;
 	/**
 	 * Chroma: 0-100
 	 */
-	private var c:Float;
+	public var c:Float;
 	/**
 	 * Hue: 0-360 degrees
 	 */
-	private var h:Float;
+	public var h:Float;
 	
 	/**
 	 * Create a new CIELch color.
@@ -111,8 +111,17 @@ class CIELch
 	 * Useful for libraries like HaxeFlixel.
 	 * @return	Int in the form 0xAARRGGBB.
 	 */
-	public function toNumber():Int
+	public function toNumber()
 	{
 		return this.toRGB().toNumber();
+	}
+	
+	/**
+	 * Convert this color to hexadecimal representation.
+	 * @return	Hex in the form RRGGBB.
+	 */
+	public function toHex()
+	{
+		return this.toRGB().toHex();
 	}
 }

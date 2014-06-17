@@ -168,10 +168,20 @@ class RGB
 	 * Useful for libraries like HaxeFlixel.
 	 * @return	Int in the form 0xAARRGGBB.
 	 */
-	public function toNumber():Int
+	public function toNumber()
 	{
 		var x:String = StringTools.hex(Std.int(this.R), 2) + StringTools.hex(Std.int(this.G), 2) + StringTools.hex(Std.int(this.B), 2);
 		return Std.parseInt("0xff" + x);
+	}
+	
+	/**
+	 * Convert this color to hexadecimal representation.
+	 * @return	Hex string in the form RRGGBB.
+	 */
+	public function toHex()
+	{
+		var x:String = StringTools.hex(Std.int(this.R), 2) + StringTools.hex(Std.int(this.G), 2) + StringTools.hex(Std.int(this.B), 2);
+		return x;
 	}
 	
 	/**

@@ -117,9 +117,18 @@ class HSV
 	 * Useful for libraries like HaxeFlixel.
 	 * @return	Int in the form 0xAARRGGBB.
 	 */
-	public function toNumber():Int
+	public function toNumber()
 	{
 		return this.toRGB().toNumber();
+	}
+	
+	/**
+	 * Convert this color to hexadecimal representation.
+	 * @return	Hex in the form RRGGBB.
+	 */
+	public function toHex()
+	{
+		return this.toRGB().toHex();
 	}
 	
 	/**
@@ -143,14 +152,6 @@ class HSV
 		a.push(target);
 		
 		return a;
-	}
-
-	public function makeComplementary():Array<HSV>
-	{
-		var x = this.toHSV();
-		var y = new HSV(Util.loop(x.H + 180, 360), x.S, x.V);
-		var z = new Array<HSV>();
-		return z;
 	}
 	
 	/**
