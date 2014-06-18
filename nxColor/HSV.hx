@@ -140,10 +140,21 @@ class HSV
 	public function blend(n:Int, target:HSV):Array<HSV>
 	{
 		n--;
+		
+		if (this.V == 0 || this.V == 100)
+		{
+			this.H = this.S = 0;
+		}
+		
 		var a = new Array<HSV>();
 		var DiffH = (1 / n) * (target.H - this.H);
 		var DiffS = (1 / n) * (target.S - this.S);
 		var DiffV = (1 / n) * (target.V - this.V);
+		
+		if (this.V == 0 || this.V == 100)
+		{
+			DiffS = DiffH = 0;
+		}
 		
 		for (i in 0...n)
 		{
