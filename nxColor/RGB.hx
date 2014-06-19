@@ -38,7 +38,7 @@ class RGB
 	 */
 	public function toRGB():RGB
 	{
-		return this;
+		return new RGB(this.R, this.G, this.B);
 	}
 	
 	/**
@@ -178,7 +178,7 @@ class RGB
 	 * Convert this color to hexadecimal representation.
 	 * @return	Hex string in the form RRGGBB.
 	 */
-	public function toHex()
+	public function toHex():String
 	{
 		var x:String = StringTools.hex(Std.int(this.R), 2) + StringTools.hex(Std.int(this.G), 2) + StringTools.hex(Std.int(this.B), 2);
 		return x;

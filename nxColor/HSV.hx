@@ -40,7 +40,7 @@ class HSV
 	 */
 	public function toHSV():HSV
 	{
-		return this;
+		return new HSV(this.H, this.S, this.V);
 	}
 	
 	/**
@@ -126,7 +126,7 @@ class HSV
 	 * Convert this color to hexadecimal representation.
 	 * @return	Hex in the form RRGGBB.
 	 */
-	public function toHex()
+	public function toHex():String
 	{
 		return this.toRGB().toHex();
 	}

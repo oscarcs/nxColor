@@ -40,7 +40,7 @@ class CIELch
 	 */
 	public function toCIELch():CIELch
 	{
-		return this;
+		return new CIELch(this.L, this.c, this.h);
 	}
 	
 	/**
@@ -120,7 +120,7 @@ class CIELch
 	 * Convert this color to hexadecimal representation.
 	 * @return	Hex in the form RRGGBB.
 	 */
-	public function toHex()
+	public function toHex():String
 	{
 		return this.toRGB().toHex();
 	}

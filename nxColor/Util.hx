@@ -14,6 +14,7 @@ typedef IsColor =
 	function toXYZ():XYZ;
 	function toCIELch():CIELch;
 	function toCIELab():CIELab;
+	function toHex():String;
 }
  
 class Util
@@ -28,15 +29,26 @@ class Util
 	 * @param	color
 	 * @return	Complementary color.
 	 */
-	public static function makeComplementary(color:IsColor)
+	public static function getInverse(color:IsColor)
 	{
 		var rgb:RGB = color.toRGB();
 		rgb.R = 255 - rgb.R;
 		rgb.G = 255 - rgb.G;
 		rgb.B = 255 - rgb.B;
-		return rgb;
+		var x = makeType(rgb, color);
+		return x;
 	}
-	
+	/*
+	public static function makeTriad(color):Array<Dynamic>
+	{
+		var hsv:HSV = color.toHSV();
+		var a = new Array<Dynamic>();
+		a.push(makeType(hsv, color));
+		a.push(makeType(hsv.setHue(hsv.H + 120), color));
+		a.push(makeType(hsv.setHue(hsv.H + 240), color));
+		return a;
+	}
+	*/
 	/**
 	 * Set a value to loop through a set length.
 	 * @param	x	Value to loop.
@@ -52,25 +64,13 @@ class Util
 	return x;
 	}
 	
-	/* Under construction!
-	public function randomBlendRatio(start:Dynamic, end:Dynamic, length:Int):Array<Dynamic>
-	{
-		var a:Array<Dynamic> = start.blend(Std.int(length / 2), end);
-		var x = Std.random(a.length - 1);
-		var b:Array<Dynamic> = start.blend(Std.int(length / 2), a[x]);
-		var c:Array<Dynamic> = a[x].blend(Std.int(length / 2), end);
-		a = b.concat(c);
-		return a;
-	}
-	*/
-	
 	/**
 	 * Blend between an arbitrary number of colors in an array.
 	 * @param	x	Array of colors to blend between.
 	 * @param	length	Number of colors to have in the final array (not perfectly accurate)
 	 * @return	new array containing final blend.
 	 */
-	public static function blendMultiple<T:(IsColor)>(x:Array<T>, length:Int):Array<T>
+	public static function blendMultiple<T:IsColor>(x:Array<T>, length:Int):Array<T>
 	{
 		var a:Array<T> = new Array<T>();
 		var b:Array<T> = new Array<T>();

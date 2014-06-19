@@ -38,7 +38,7 @@ class CIELab
 	 */
 	public function toCIELab():CIELab
 	{
-		return this;
+		return new CIELab(this.L, this.a, this.b);
 	}
 	
 	/**
@@ -167,7 +167,7 @@ class CIELab
 	 * Convert this color to hexadecimal representation.
 	 * @return	Hex in the form RRGGBB.
 	 */
-	public function toHex()
+	public function toHex():String
 	{
 		return this.toRGB().toHex();
 	}

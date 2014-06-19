@@ -28,7 +28,7 @@ class XYZ
 	 */
 	public function toXYZ():XYZ
 	{
-		return this;
+		return new XYZ(this.X, this.Y, this.Z);
 	}
 	
 	/**
@@ -197,7 +197,7 @@ class XYZ
 	 * Convert this color to hexadecimal representation.
 	 * @return	Hex in the form RRGGBB.
 	 */
-	public function toHex()
+	public function toHex():String
 	{
 		return this.toRGB().toHex();
 	}
