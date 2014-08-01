@@ -95,11 +95,17 @@ class CIELch
 		var a = new Array<CIELch>();
 		var DiffL = (1 / n) * (target.L - this.L);
 		var Diffc = (1 / n) * (target.c - this.c);
-		var Diffh = (1 / n) * (target.h - this.h);
+		
+		var Diffh = target.h - this.h;
+		if (Diffh > 180 || Diffh < -180)
+		{
+			Diffh = 360 + Diffh;
+		}
+		Diffh = (1 / n) * Diffh;
 				
 		for (i in 0...n)
 		{
-			a.push(new CIELch(this.L + (i * DiffL), this.c + (i * Diffc), this.h + (i * Diffh)));
+			a.push(new CIELch(this.L + (i * DiffL), this.c + (i * Diffc), Util.loop(this.h + (i*Diffh), 360)));
 		}
 		a.push(target);
 		

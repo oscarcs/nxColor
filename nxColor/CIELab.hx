@@ -1,7 +1,7 @@
 package nxColor;
 
 /**
- * Class for representing CIELch color and associated useful functions.
+ * Class for representing CIELab color and associated useful functions.
  * @author NxT
  */
 class CIELab

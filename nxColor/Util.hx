@@ -16,14 +16,11 @@ typedef IsColor =
 	function toCIELab():CIELab;
 	function toHex():String;
 }
- 
+ /**
+  * Singleton-style class of useful color functions.
+  */
 class Util
 {
-	public function new()
-	{
-		
-	}
-	
 	/**
 	 * Gets the complementary / inverse color. 
 	 * @param	color
@@ -115,6 +112,28 @@ class Util
 
 		a = x.blend(n, y);
 		return a;
+	}
+	
+	public static function makeDaytime()
+	{
+		var a = new Array<CIELab>();
+		var x = new CIELab(randomFloat(40, 2) + 60, randomFloat(80, 2) - 20 , randomFloat(70, 2) - 128);
+		//x = x.toHSV().setSaturation(x.toHSV().S - Std.random(70)).toCIELab();
+		if (x.toHSV().V > 95) { x = x.toHSV().setValue(x.toHSV().V - 20).toCIELab(); } 
+		//trace(x.toHSV());
+		a.push(x);
+		var q = a[0];
+		return q;
+	}
+	
+	public static function makeTransition()
+	{
+		
+	}
+	
+	public static function makeNighttime()
+	{
+		
 	}
 		
 	/**

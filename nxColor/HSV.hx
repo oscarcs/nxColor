@@ -147,9 +147,16 @@ class HSV
 		}
 		
 		var a = new Array<HSV>();
-		var DiffH = (1 / n) * (target.H - this.H);
+		//var DiffH = (1 / n) * (target.H - this.H);
 		var DiffS = (1 / n) * (target.S - this.S);
 		var DiffV = (1 / n) * (target.V - this.V);
+		
+		var DiffH = target.H - this.H;
+		if (DiffH > 180 || DiffH < -180)
+		{
+			DiffH = 360 + DiffH;
+		}
+		DiffH = (1 / n) * DiffH;
 		
 		if (this.V == 0 || this.V == 100)
 		{
@@ -158,9 +165,16 @@ class HSV
 		
 		for (i in 0...n)
 		{
-			a.push(new HSV(this.H + (i * DiffH), this.S + (i * DiffS), this.V + (i * DiffV)));
+			a.push(new HSV(Util.loop(this.H + (i * DiffH), 360), this.S + (i * DiffS), this.V + (i * DiffV)));
 		}
-		a.push(target);
+		if (this.V == 0 || this.V == 100)
+		{
+			a.push(new HSV(0, this.S + (n * DiffS), this.V + (n * DiffV)));
+		}
+		else
+		{
+			a.push(target);	
+		}
 		
 		return a;
 	}
