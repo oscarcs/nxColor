@@ -35,17 +35,25 @@ class Util
 		var x = makeType(rgb, color);
 		return x;
 	}
-	/*
-	public static function makeTriad(color):Array<Dynamic>
+	
+	/**
+	 * Create an array of colors with equally spaced hues.
+	 * @param	color
+	 * @param	vertices
+	 * @return
+	 */
+	public static function makePolygonal(color:IsColor, vertices:Int):Array<Dynamic>
 	{
 		var hsv:HSV = color.toHSV();
 		var a = new Array<Dynamic>();
-		a.push(makeType(hsv, color));
-		a.push(makeType(hsv.setHue(hsv.H + 120), color));
-		a.push(makeType(hsv.setHue(hsv.H + 240), color));
+		var r = 360 / vertices;
+		for (i in 0...vertices)
+		{
+			a.push(makeType(hsv.setHue(hsv.H + (r * i)), color));
+		}
 		return a;
 	}
-	*/
+	
 	/**
 	 * Set a value to loop through a set length.
 	 * @param	x	Value to loop.
@@ -114,6 +122,7 @@ class Util
 		return a;
 	}
 	
+	/*
 	public static function makeDaytime()
 	{
 		var a = new Array<CIELab>();
@@ -135,6 +144,7 @@ class Util
 	{
 		
 	}
+	*/
 		
 	/**
 	 * Function that returns a random Float to a certain number of decimal places.

@@ -186,7 +186,7 @@ class HSV
 	 */
 	public function setHue(x:Float):HSV
 	{
-		Util.loop(x, 360);
+		x = Util.loop(x, 360);
 		return new HSV(x, this.S, this.V);
 	}
 	
