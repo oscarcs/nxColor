@@ -154,7 +154,7 @@ class HSV
 		var DiffH = target.H - this.H;
 		if (DiffH > 180 || DiffH < -180)
 		{
-			DiffH = 360 + DiffH;
+			DiffH = Util.loop(360 + DiffH, 360);
 		}
 		DiffH = (1 / n) * DiffH;
 		

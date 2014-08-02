@@ -54,6 +54,18 @@ class Util
 		return a;
 	}
 	
+	public static function makeCIELchPolygonal(color:IsColor, vertices:Int):Array<Dynamic>
+	{
+		var Lch:CIELch= color.toCIELch();
+		var a = new Array<Dynamic>();
+		var r = 360 / vertices;
+		for (i in 0...vertices)
+		{
+			a.push(makeType(new CIELch (Lch.L, Lch.c, loop(Lch.h + (r * i), 360)), color));
+		}
+		return a;
+	}
+	
 	/**
 	 * Set a value to loop through a set length.
 	 * @param	x	Value to loop.

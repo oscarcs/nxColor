@@ -99,7 +99,7 @@ class CIELch
 		var Diffh = target.h - this.h;
 		if (Diffh > 180 || Diffh < -180)
 		{
-			Diffh = 360 + Diffh;
+			Diffh = Util.loop(360 + Diffh, 360);
 		}
 		Diffh = (1 / n) * Diffh;
 				
