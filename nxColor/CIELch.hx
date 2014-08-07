@@ -130,4 +130,15 @@ class CIELch
 	{
 		return this.toRGB().toHex();
 	}
+	
+	/**
+	 * Helper function for setting hue. Useful for chaining.
+	 * @param	x	Amount of hue.
+	 * @return	New HSV color.
+	 */
+	public function setHue(x:Float):CIELch
+	{
+		x = Util.loop(x, 360);
+		return new CIELch(this.L, this.c, x);
+	}
 }

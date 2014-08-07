@@ -40,28 +40,31 @@ class Util
 	 * Create an array of colors with equally spaced hues.
 	 * @param	color
 	 * @param	vertices
+	 * @param	Lch	If true, use CIELch; else use HSV.
 	 * @return
 	 */
-	public static function makePolygonal(color:IsColor, vertices:Int):Array<Dynamic>
+	public static function makePolygonal(color:IsColor, vertices:Int, ?Lch:Bool = false):Array<Dynamic>
 	{
-		var hsv:HSV = color.toHSV();
-		var a = new Array<Dynamic>();
-		var r = 360 / vertices;
-		for (i in 0...vertices)
+		var space:Dynamic;
+		var hue:Float;
+		if (Lch == true)
 		{
-			a.push(makeType(hsv.setHue(hsv.H + (r * i)), color));
+			space = color.toCIELch();
+			hue = space.h;
+			trace("k");
 		}
-		return a;
-	}
-	
-	public static function makeCIELchPolygonal(color:IsColor, vertices:Int):Array<Dynamic>
-	{
-		var Lch:CIELch= color.toCIELch();
+		else
+		{
+			space = color.toHSV();
+			hue = space.H;
+		}
 		var a = new Array<Dynamic>();
 		var r = 360 / vertices;
-		for (i in 0...vertices)
+		a.push(color);
+		for (i in 0...(vertices-1))
 		{
-			a.push(makeType(new CIELch (Lch.L, Lch.c, loop(Lch.h + (r * i), 360)), color));
+			a.push(makeType(space.setHue(hue + (r * (i + 1))), color));
+			//a.push(
 		}
 		return a;
 	}
