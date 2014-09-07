@@ -29,9 +29,9 @@ class HSV
 	 */
 	public function new(H:Float, S:Float, V:Float) 
 	{
-		this.H = H;
-		this.S = S;
-		this.V = V;
+		this.H = Util.loop(H, 360);
+		this.S = Util.loop(S, 100);
+		this.V = Util.loop(V, 100);
 	}
 	
 	/**

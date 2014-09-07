@@ -1,25 +1,23 @@
 nxColor
 =======
 
-Color manipulation library written in Haxe; currently very WIP. Feel free to contribute or [hit me up on Twitter](http://twitter.com/ocsims) for feature requests, ideas, etc.
+Haxe gamedev color manipulation library; currently a work in progress.
 
 Currently supports CIELch, CIELab, XYZ, RGB, and HSB color spaces, and will convert between them.
 The focus of this library is palette creation for game development.
 
 #### Usage:
 
-nxColor supports (and is essentially focussed on!) chaining between color spaces like so:
 ````haxe
-//blend two RGB colors through the CIELab color space.
+//Blend two RGB colors through the CIELab color space:
 var a = new RGB(119, 158, 255).toCIELab().blend(50, new RGB(255, 61, 0).toCIELab());
+
+//Create a Golden Ratio color distribution:
+var b = Util.goldenRatio(10, 99, 99);
 ````
 
-You can access special functions in the 'Util' class.
-makeSky() returns an array of CIELab colors that resemble 'sky-like' blends, limited to certain color ranges.
-````haxe
-var a = Util.makeSky(48);
-var b = Util.getInverse(a[0]);
-````
+
+Feel free to contribute or [hit me up on Twitter](http://twitter.com/ocsims) for feature requests, ideas, etc.
 
 #### License:
 ````

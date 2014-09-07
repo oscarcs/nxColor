@@ -29,9 +29,9 @@ class CIELch
 	 */
 	public function new(L:Float, c:Float, h:Float) 
 	{
-		this.L = L;
-		this.c = c;
-		this.h = h<360?h:(h-360);
+		this.L = Util.loop(L, 100);
+		this.c = Util.loop(c, 100);
+		this.h = Util.loop(h, 360);
 	}
 	
 	/**
