@@ -105,14 +105,14 @@ class Util
 	{
 		var rgb = color.toRGB();
 		rgb.R = Math.pow(rgb.R, 2.2);
-        rgb.G = Math.pow(rgb.G, 2.2);
-        rgb.B = Math.pow(rgb.B, 2.2);
-        
-		var R = Math.pow(0.02138 + 0.677 * rgb.G + 0.2802 * rgb.R, 1 / 2.2);
-        var B = Math.pow(0.02138 * (1 + rgb.G - rgb.R) + 0.9572 * rgb.B, 1 / 2.2);
+		rgb.G = Math.pow(rgb.G, 2.2);
+		rgb.B = Math.pow(rgb.B, 2.2);
 		
-		var rrb = new RGB(R, R, B);
-		return makeType(rrb, color);
+		var R = Math.pow(0.02138 + (0.677 * rgb.G) + (0.2802 * rgb.R), 1 / 2.2);
+		var B = Math.pow(0.02138 * (1 + rgb.G - rgb.R) + (0.9572 * rgb.B), 1 / 2.2);
+		
+		var adjusted = new RGB(R, R, B);
+		return makeType(adjusted, color);
 	}
 	
 	/**
@@ -120,18 +120,18 @@ class Util
 	 * @param	color
 	 * @return
 	 */
-	public static function testRedBlindness(color:IsColor)//:Dynamic
+	public static function testRedBlindness(color:IsColor):Dynamic
 	{
 		var rgb = color.toRGB();
 		rgb.R = Math.pow(rgb.R, 2.2);
-        rgb.G = Math.pow(rgb.G, 2.2);
-        rgb.B = Math.pow(rgb.B, 2.2);
-       
-		var R = Math.pow(0.003974 + 0.8806 * rgb.G + 0.1115 * rgb.R, 1 / 2.2);
-        var B = Math.pow(0.003974 * (1 - rgb.G + rgb.R) + 0.9921 * rgb.B, 1 / 2.2);
+		rgb.G = Math.pow(rgb.G, 2.2);
+		rgb.B = Math.pow(rgb.B, 2.2);
 		
-		var rrb = new RGB(R, R, B);
-		return makeType(rrb, color);
+		var R = Math.pow(0.003974 + (0.8806 * rgb.G) + (0.1115 * rgb.R), 1 / 2.2);
+		var B = Math.pow(0.003974 * (1 - rgb.G + rgb.R) + (0.9921 * rgb.B), 1 / 2.2);
+		
+		var adjusted = new RGB(R, R, B);
+		return makeType(adjusted, color);
 	}
 	
 	/**
