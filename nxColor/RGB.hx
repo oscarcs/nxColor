@@ -130,11 +130,9 @@ class RGB
 		v = max;
 		delta = max - min;
 		
-		trace(max);
 		if (max != 0)
 		{
 			s = delta / max;
-			trace(s);
 		}
 		else
 		{
