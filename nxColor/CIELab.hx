@@ -66,50 +66,55 @@ class CIELab
 	}
 	
 	/**
-	 * Convert this color to the XYZ color space.
+	 * Convert this color to the XYZ color space..
 	 * @return New XYZ color.
 	 */
 	public function toXYZ():XYZ
 	{
-		var xReference:Float = 95.047;
-		var yReference:Float = 100.000;
-		var zReference:Float = 108.883;
-
-		var yVar:Float = (this.L + 16 ) / 116;
-		var xVar:Float = this.a / 500 + yVar;
-		var zVar:Float = yVar - this.b / 200;
+		var x, y, z;
+	
+		var xn = 95.047;
+		var yn = 100.000;
+		var zn = 108.883;
 		
-		//convert y
-		if (Math.pow(yVar,3) > 0.008856){
-			yVar = Math.pow(yVar,3);
+		var fy = (this.L  + 16) / 116;
+		var fx = fy + (this.a / 500);
+		var fz = fy - (this.b / 200);
+		
+		var delta = 6 / 29;
+		var deltaSq = Math.pow(6 / 29, 2);
+		
+		//Y
+		if (fy > delta)
+		{
+			y = yn * Math.pow(fy, 3);
 		}
 		else
 		{
-			yVar = (yVar - 16 / 116) / 7.787;
+			y = (fy - 16 / 116) * 3 * deltaSq * yn;
 		}
-		//convert x
-		if (Math.pow(xVar, 3) > 0.008856)
+		
+		//X
+		if (fx > delta)
 		{
-			xVar = Math.pow(xVar,3);
-		}
-		else 
-		{
-			xVar = (xVar - 16 / 116) / 7.787;
-		}
-		//convert z
-		if (Math.pow(zVar, 3) > 0.008856)
-		{
-			zVar = Math.pow(zVar,3);
+			x = xn * Math.pow(fx, 3);
 		}
 		else
 		{
-			zVar = (zVar - 16 / 116) / 7.787;
+			x = (fx - 16 / 116) * 3 * deltaSq * xn;
+		}
+	
+		//Z
+		if (fz > delta)
+		{
+			z = zn * Math.pow(fz, 3);
+		}
+		else
+		{
+			z = (fz - 16 / 116) * 3 * deltaSq * zn;
 		}
 		
-		var X:Float = xReference * xVar;
-		var Y:Float = yReference * yVar;
-		var Z:Float = zReference * zVar;
-		return new XYZ(X, Y, Z);
+		return new XYZ(x, y, z);
 	}
 	
 	/**

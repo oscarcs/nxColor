@@ -129,9 +129,12 @@ class RGB
 
 		v = max;
 		delta = max - min;
+		
+		trace(max);
 		if (max != 0)
 		{
 			s = delta / max;
+			trace(s);
 		}
 		else
 		{
@@ -163,6 +166,21 @@ class RGB
 		return new HSV(h, s*100, v*100);
 	}
 	
+	public function setRed(r:Float)
+	{
+		return new RGB(r, this.G, this.B);
+	}
+	
+	public function setGreen(g:Float)
+	{
+		return new RGB(this.R, g, this.B);
+	}
+	
+	public function setBlue(b:Float)
+	{
+		return new RGB(this.R, this.G, b);
+	}
+	
 	/**
 	 * Convert this color to a hex int.
 	 * Useful for libraries like HaxeFlixel.
@@ -173,6 +191,24 @@ class RGB
 		var x:String = StringTools.hex(Std.int(this.R), 2) + StringTools.hex(Std.int(this.G), 2) + StringTools.hex(Std.int(this.B), 2);
 		return Std.parseInt("0xff" + x);
 	}
+	
+	/**
+	 * Convert an int to a color.
+	 * @param	x	Int in the form 0xAARRGGBB.
+	 * @return	new RGB color.
+	 */
+	public static function fromNumber(x:Int):RGB
+	{
+		var cs = StringTools.hex(x, 6);
+		
+		var r = Std.parseInt("0x" + cs.substr(0, 2));
+		var g = Std.parseInt("0x" + cs.substr(2, 2));
+		var b = Std.parseInt("0x" + cs.substr(4, 2));
+		
+		var conv:RGB = new RGB(r, g, b);
+		return conv;
+	}
+	
 	
 	/**
 	 * Convert this color to hexadecimal representation.
@@ -206,9 +242,4 @@ class RGB
 		
 		return a;
 	}
-	
-	//public function makeComplementary():Array<RGB>
-	//{
-		//this.toHSV()
-	//}	
 }

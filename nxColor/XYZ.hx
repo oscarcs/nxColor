@@ -2,6 +2,7 @@ package nxColor;
 
 /**
  * Class for representing CIE XYZ color and associated useful functions.
+ * Observer is 2°; Illuminant is Daylight.
  * @author NxT
  */
 class XYZ
@@ -75,9 +76,9 @@ class XYZ
 			blue = 12.92 * blue;
 		}
 		
-		var R:Int = Math.round(red * 255);
-		var G:Int = Math.round(green * 255);
-		var B:Int = Math.round(blue * 255);
+		var R = red * 255;
+		var G = green * 255;
+		var B = blue * 255;
 
 		return new RGB(R, G, B);
 	}

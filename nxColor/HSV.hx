@@ -30,8 +30,8 @@ class HSV
 	public function new(H:Float, S:Float, V:Float) 
 	{
 		this.H = Util.loop(H, 360);
-		this.S = Util.loop(S, 100);
-		this.V = Util.loop(V, 100);
+		this.S = S;
+		this.V = V;
 	}
 	
 	/**
@@ -197,7 +197,9 @@ class HSV
 	 */
 	public function setSaturation(x:Float):HSV
 	{
-		if (x > 100) { x = 100; }
+		if (x > 100)
+			x = 100;
+		x = Util.loop(x, 100);
 		return new HSV(this.H, x, this.V);
 	}
 	
@@ -208,7 +210,9 @@ class HSV
 	 */
 	public function setValue(x:Float):HSV
 	{
-		if (x > 100) { x = 100; }
+		if (x > 100)
+			x = 100;
+		x = Util.loop(x, 100);
 		return new HSV(this.H, this.S, x);
 	}
 	

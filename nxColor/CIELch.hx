@@ -80,7 +80,7 @@ class CIELch
 	 */
 	public function toHSV():HSV
 	{
-		return this.toRGB().toHSV();
+		return this.toCIELab().toHSV();
 	}
 	
 	/**
