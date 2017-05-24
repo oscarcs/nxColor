@@ -4,7 +4,7 @@ import nxColor.*;
 
 /**
  * Utility class for miscellaneous color manipulation.
- * @author NxT
+ * @author Oscar C. S.
  */
 typedef IsColor =
 {
@@ -72,7 +72,7 @@ class Util
 	/**
 	 * Create a palette distributed using the golden ratio.
 	 * See http://gamedev.stackexchange.com/a/46469 for an explanation.
-	 * Noe that this is not the optimum method for distributing color, however.
+	 * Note that this is not the 'optimum' method for distributing color, however.
 	 * @param	length
 	 * @param	saturation
 	 * @param	value

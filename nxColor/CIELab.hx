@@ -2,7 +2,7 @@ package nxColor;
 
 /**
  * Class for representing CIELab color and associated useful functions.
- * @author NxT
+ * @author Oscar C. S.
  */
 class CIELab
 {
@@ -159,8 +159,7 @@ class CIELab
 	}
 
 	/**
-	 * Convert this color to a hex int.
-	 * Useful for libraries like HaxeFlixel.
+	 * Convert this color to an int.
 	 * @return	Int in the form 0xAARRGGBB.
 	 */
 	public function toNumber()
@@ -169,7 +168,7 @@ class CIELab
 	}
 	
 	/**
-	 * Convert this color to hexadecimal representation.
+	 * Convert this color to a hex string.
 	 * @return	Hex in the form RRGGBB.
 	 */
 	public function toHex():String

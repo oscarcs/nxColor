@@ -3,7 +3,7 @@ package nxColor;
 /**
  * Class for representing CIE XYZ color and associated useful functions.
  * Observer is 2°; Illuminant is Daylight.
- * @author NxT
+ * @author Oscar C. S.
  */
 class XYZ
 {
@@ -185,8 +185,7 @@ class XYZ
 	}
 
 	/**
-	 * Convert this color to a hex int.
-	 * Useful for libraries like HaxeFlixel.
+	 * Convert this color to an int.
 	 * @return	Int in the form 0xAARRGGBB.
 	 */
 	public function toNumber()
@@ -195,7 +194,7 @@ class XYZ
 	}
 
 	/**
-	 * Convert this color to hexadecimal representation.
+	 * Convert this color to a hex string.
 	 * @return	Hex in the form RRGGBB.
 	 */
 	public function toHex():String
