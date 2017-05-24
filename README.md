@@ -1,10 +1,9 @@
 nxColor
 =======
 
-Haxe gamedev color manipulation library; currently a work in progress.
+Haxe color manipulation library.
 
 Currently supports CIELch, CIELab, XYZ, RGB, and HSB color spaces, and will convert between them.
-The focus of this library is palette creation for game development.
 
 #### Usage:
 
@@ -16,14 +15,11 @@ var a = new RGB(119, 158, 255).toCIELab().blend(50, new RGB(255, 61, 0).toCIELab
 var b = Util.goldenRatio(10, 99, 99);
 ````
 
-
-Feel free to contribute or [hit me up on Twitter](http://twitter.com/ocsims) for feature requests, ideas, etc.
-
 #### License:
 ````
 The MIT License
 
-Copyright © 2014 Oscar, @nxTOS.
+Copyright © 2014-2017 Oscar C. S.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
